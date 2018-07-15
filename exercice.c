@@ -28,7 +28,7 @@ size_t	string_to_unsigned(const char *str)
 	{
 		if (!isdigit(str[i]))
 		{
-			printf("Error, the argument must contain digits only.");
+			printf("Error, the argument must contain digits only.\n");
 			exit(1);
 		}
 		ret = ret * 10 + (str[i] - '0');
@@ -99,8 +99,13 @@ int	main(int ac, char **av)
 		printf("Usage: %s <number of values>\n", av[0]);
 		return 1;
 	}
-	srand(time(NULL));
 	len = string_to_unsigned(av[1]);
+	if (len == 0)
+	{
+		printf("Sorry, your argument can't be zero.\n");
+		return 1;
+	}
+	srand(time(NULL));
 	array = malloc(sizeof(int) * len);
 	for (size_t i = 0; i < len; i++)
 	{
